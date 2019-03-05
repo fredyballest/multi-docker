@@ -3,18 +3,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t fredyballest/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t fredyball/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run fredyballest/react-test npm test -- --coverage
+  - docker run fredyball/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t fredyballest/multi-client ./client
-  - docker build -t fredyballest/multi-nginx ./nginx
-  - docker build -t fredyballest/multi-server ./server
-  - docker build -t fredyballest/multi-worker ./worker
+  - docker build -t fredyball/multi-client ./client
+  - docker build -t fredyball/multi-nginx ./nginx
+  - docker build -t fredyball/multi-server ./server
+  - docker build -t fredyball/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push fredyballest/multi-client
-  - docker push fredyballest/multi-nginx
-  - docker push fredyballest/multi-server
-  - docker push fredyballest/multi-worker
+  - docker push fredyball/multi-client
+  - docker push fredyball/multi-nginx
+  - docker push fredyball/multi-server
+  - docker push fredyball/multi-worker
